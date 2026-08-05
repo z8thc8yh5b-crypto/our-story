@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Our Story — The First 100 Days</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+KR:wght@300;400&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="film-grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="light-leak light-leak--left" aria-hidden="true"></div>
+  <div class="light-leak light-leak--right" aria-hidden="true"></div>
+  <div id="flash" class="flash-overlay" aria-hidden="true"></div>
+  <div id="zoom-layer" class="zoom-layer" aria-hidden="true"></div>
+
+  <!-- Opening Screen -->
+  <main id="opening" class="screen screen--active">
+    <div class="screen__content">
+      <header class="title-block">
+        <h1 class="title-block__main">Our Story</h1>
+        <h2 class="title-block__sub">The First 100 Days</h2>
+      </header>
+
+      <button id="start-btn" class="btn-start" type="button">
+        START
+      </button>
+    </div>
+
+    <footer class="opening-footer">
+      <p class="opening-footer__date">May 10, 2026</p>
+    </footer>
+  </main>
+
+  <!-- Password Screen -->
+  <section id="password" class="screen screen--password" aria-hidden="true">
+    <div class="screen__content screen__content--unlock">
+      <header class="unlock-header">
+        <h2 class="unlock-header__title">Our Story</h2>
+        <p class="unlock-header__date">May 10, 2026</p>
+      </header>
+
+      <p class="unlock-prompt">추억을 열어볼까요?</p>
+
+      <form id="password-form" class="unlock-form" autocomplete="off">
+        <div class="code-dots" role="group" aria-label="4-digit access code">
+          <label class="code-dot" data-index="0">
+            <span class="code-dot__circle" aria-hidden="true"></span>
+            <input class="code-dot__input" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" aria-label="First digit" data-index="0">
+          </label>
+          <label class="code-dot" data-index="1">
+            <span class="code-dot__circle" aria-hidden="true"></span>
+            <input class="code-dot__input" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" aria-label="Second digit" data-index="1">
+          </label>
+          <label class="code-dot" data-index="2">
+            <span class="code-dot__circle" aria-hidden="true"></span>
+            <input class="code-dot__input" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" aria-label="Third digit" data-index="2">
+          </label>
+          <label class="code-dot" data-index="3">
+            <span class="code-dot__circle" aria-hidden="true"></span>
+            <input class="code-dot__input" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" aria-label="Fourth digit" data-index="3">
+          </label>
+        </div>
+
+        <button class="btn-unlock" type="submit" disabled>
+          Unlock
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Film Gallery -->
+  <section id="gallery" class="screen screen--scroll" aria-hidden="true">
+    <div class="gallery">
+      <ul id="film-list" class="film-list" role="list"></ul>
+    </div>
+  </section>
+
+  <!-- Day Page -->
+  <section id="day-page" class="screen screen--day" aria-hidden="true">
+    <div class="day-page">
+      <button id="day-back-btn" class="day-page__back" type="button" aria-label="Back to film list">
+        ← Back
+      </button>
+      <time id="day-page-date" class="day-page__date"></time>
+      <div class="day-page__body" id="day-page-body"></div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
