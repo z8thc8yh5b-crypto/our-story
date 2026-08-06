@@ -3,19 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Our Story — The First 100 Days</title>
+  <title>For Yonggi.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+KR:wght@300;400&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Audio Elements -->
+  <audio id="shutter-sound" preload="auto">
+    <source src="shutter.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="bg-music" loop preload="auto">
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
   <div class="film-grain" aria-hidden="true"></div>
   <div class="vignette" aria-hidden="true"></div>
   <div class="light-leak light-leak--left" aria-hidden="true"></div>
   <div class="light-leak light-leak--right" aria-hidden="true"></div>
-  <div id="flash" class="flash-overlay" aria-hidden="true"></div>
   <div id="zoom-layer" class="zoom-layer" aria-hidden="true"></div>
+  <div id="flash-layer" class="flash-layer" aria-hidden="true"></div>
+
+  <!-- Music Player Button -->
+  <button id="music-btn" class="music-btn" type="button" aria-label="Toggle music">
+    <span class="music-btn__icon"></span>
+  </button>
 
   <!-- Opening Screen -->
   <main id="opening" class="screen screen--active">
@@ -29,10 +41,6 @@
         START
       </button>
     </div>
-
-    <footer class="opening-footer">
-      <p class="opening-footer__date">May 10, 2026</p>
-    </footer>
   </main>
 
   <!-- Password Screen -->
@@ -40,7 +48,6 @@
     <div class="screen__content screen__content--unlock">
       <header class="unlock-header">
         <h2 class="unlock-header__title">Our Story</h2>
-        <p class="unlock-header__date">May 10, 2026</p>
       </header>
 
       <p class="unlock-prompt">추억을 열어볼까요?</p>
@@ -65,28 +72,81 @@
           </label>
         </div>
 
-        <button class="btn-unlock" type="submit" disabled>
-          Unlock
+        <button id="open-btn" class="btn-open" type="submit" disabled>
+          Open
         </button>
       </form>
     </div>
   </section>
 
-  <!-- Film Gallery -->
-  <section id="gallery" class="screen screen--scroll" aria-hidden="true">
-    <div class="gallery">
-      <ul id="film-list" class="film-list" role="list"></ul>
+  <!-- Calendar Gallery -->
+  <section id="gallery" class="screen screen--calendar" aria-hidden="true">
+    <div class="calendar">
+      <header class="calendar__header">
+        <button id="month-prev" class="calendar__nav calendar__nav--prev" type="button" aria-label="Previous month" disabled>
+          ←
+        </button>
+        <h2 id="calendar-month" class="calendar__month"></h2>
+        <button id="month-next" class="calendar__nav calendar__nav--next" type="button" aria-label="Next month">
+          →
+        </button>
+      </header>
+      <div class="calendar__grid">
+        <div class="calendar__days">
+          <span class="calendar__day-label">Sun</span>
+          <span class="calendar__day-label">Mon</span>
+          <span class="calendar__day-label">Tue</span>
+          <span class="calendar__day-label">Wed</span>
+          <span class="calendar__day-label">Thu</span>
+          <span class="calendar__day-label">Fri</span>
+          <span class="calendar__day-label">Sat</span>
+        </div>
+        <div id="calendar-dates" class="calendar__dates"></div>
+      </div>
     </div>
   </section>
 
   <!-- Day Page -->
   <section id="day-page" class="screen screen--day" aria-hidden="true">
     <div class="day-page">
-      <button id="day-back-btn" class="day-page__back" type="button" aria-label="Back to film list">
-        ← Back
+      <button id="calendar-btn" class="day-page__calendar-btn" type="button" aria-label="Back to calendar">
+        ← Calendar
       </button>
-      <time id="day-page-date" class="day-page__date"></time>
-      <div class="day-page__body" id="day-page-body"></div>
+
+      <div class="day-page__content">
+        <!-- Photo Carousel -->
+        <div id="photo-carousel" class="photo-carousel" aria-hidden="true">
+          <div class="photo-carousel__container">
+            <div id="photo-track" class="photo-carousel__track"></div>
+          </div>
+          <button id="photo-prev" class="photo-carousel__nav photo-carousel__nav--prev" type="button" aria-label="Previous photo" disabled>
+            ←
+          </button>
+          <button id="photo-next" class="photo-carousel__nav photo-carousel__nav--next" type="button" aria-label="Next photo" disabled>
+            →
+          </button>
+          <div id="photo-dots" class="photo-carousel__dots"></div>
+        </div>
+
+        <!-- Entry Content -->
+        <div class="day-page__entry">
+          <h3 id="day-page-title" class="day-page__title"></h3>
+          <time id="day-page-date" class="day-page__date"></time>
+          <div id="day-page-body" class="day-page__body"></div>
+        </div>
+
+        <!-- Next Button -->
+        <button id="next-entry-btn" class="day-page__next" type="button">
+          다음 이야기 →
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final Screen -->
+  <section id="final" class="screen screen--final" aria-hidden="true">
+    <div class="final-screen">
+      <p class="final-screen__text">To be continued...</p>
     </div>
   </section>
 
