@@ -32,6 +32,7 @@ html {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
@@ -881,6 +882,235 @@ body {
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+/* ─── Mobile Optimization (768px and below) ─── */
+@media (max-width: 767px) {
+  /* Calendar - Premium Redesign */
+  .screen--calendar {
+    justify-content: flex-start;
+    padding-top: max(2rem, env(safe-area-inset-top));
+    padding-bottom: max(2rem, env(safe-area-inset-bottom));
+  }
+
+  .calendar {
+    max-width: 100%;
+    width: 92%;
+    gap: 1.5rem;
+  }
+
+  .calendar__header {
+    gap: 1.5rem;
+  }
+
+  .calendar__month {
+    font-size: clamp(2rem, 7vw, 2.5rem);
+    letter-spacing: 0.03em;
+  }
+
+  .calendar__nav {
+    font-size: 1.4rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .calendar__grid {
+    gap: 0.8rem;
+  }
+
+  .calendar__days {
+    gap: 0.3rem;
+  }
+
+  .calendar__day-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.25rem 0;
+    color: var(--text-muted);
+  }
+
+  .calendar__dates {
+    gap: 0.5rem;
+  }
+
+  .calendar__date {
+    width: auto;
+    height: auto;
+    max-width: none;
+    max-height: none;
+    aspect-ratio: 1.1;
+    font-size: clamp(1.2rem, 4.5vw, 1.5rem);
+    font-weight: 400;
+    border-radius: 8px;
+    transition: all 0.3s var(--ease-out-expo);
+  }
+
+  .calendar__date--has-entry {
+    background: rgba(245, 240, 232, 0.6);
+    border: 1px solid var(--gold-soft);
+    font-weight: 500;
+  }
+
+  .calendar__date--has-entry:hover {
+    background: var(--gold-soft);
+    transform: translateY(-2px);
+  }
+
+  .calendar__date--has-entry:active,
+  .calendar__date--has-entry.calendar__date--selected {
+    transform: scale(1.05);
+    background: var(--warm-brown);
+    color: var(--cream);
+  }
+
+  .calendar__date--empty {
+    background: transparent;
+    border: 1px solid transparent;
+  }
+
+  /* Day Page - Premium Redesign */
+  .screen--day {
+    justify-content: flex-start;
+    padding-top: max(1rem, env(safe-area-inset-top));
+    padding-bottom: max(4rem, env(safe-area-inset-bottom));
+    min-height: 100vh;
+    height: auto;
+    overflow-y: auto;
+  }
+
+  .day-page {
+    max-width: 100%;
+    width: 92%;
+    padding: 0;
+    margin: 0 auto;
+  }
+
+  .day-page__calendar-btn {
+    padding: 1rem 0;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+  }
+
+  .day-page__content {
+    gap: 1.5rem;
+  }
+
+  /* Typography Hierarchy */
+  .day-page__title {
+    font-size: clamp(1.8rem, 6.5vw, 2.2rem);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 1.2;
+    margin-bottom: 0.25rem;
+  }
+
+  .day-page__date {
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    color: var(--sepia);
+    opacity: 0.7;
+    margin-bottom: 0.5rem;
+  }
+
+  .day-page__body {
+    font-size: clamp(1rem, 3.5vw, 1.15rem);
+    font-weight: 300;
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+    color: var(--text-primary);
+  }
+
+  .day-page__next {
+    padding: 1.5rem 0;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    margin-top: 1rem;
+  }
+
+  /* Photo Carousel - Larger and more elegant */
+  .photo-carousel {
+    aspect-ratio: 16/10;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .photo-carousel__nav {
+    width: 2.8rem;
+    height: 2.8rem;
+    font-size: 1.1rem;
+  }
+
+  .photo-carousel__nav--prev {
+    left: 0.5rem;
+  }
+
+  .photo-carousel__nav--next {
+    right: 0.5rem;
+  }
+
+  .photo-carousel__dot {
+    width: 7px;
+    height: 7px;
+  }
+
+  /* Button improvements */
+  .btn-start {
+    min-width: clamp(8rem, 32vw, 11rem);
+    min-height: 2.8rem;
+    padding: 0.9rem 2.2rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+  }
+
+  .btn-open {
+    min-height: 2.8rem;
+    padding: 0.9rem 2.2rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+  }
+
+  /* Password screen improvements */
+  .unlock-prompt {
+    font-size: clamp(0.95rem, 3.8vw, 1.1rem);
+    line-height: 1.6;
+  }
+
+  .code-dot {
+    width: clamp(3rem, 12vw, 3.8rem);
+    height: clamp(3rem, 12vw, 3.8rem);
+  }
+
+  .code-dot__circle {
+    width: clamp(1rem, 4vw, 1.2rem);
+    height: clamp(1rem, 4vw, 1.2rem);
+  }
+
+  /* Opening screen adjustments */
+  .title-block__main {
+    font-size: clamp(2.5rem, 9vw, 3.2rem);
+  }
+
+  .title-block__sub {
+    font-size: clamp(0.85rem, 3vw, 1rem);
+  }
+
+  /* Font rendering for premium feel */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  .day-page__body,
+  .day-page__title,
+  .calendar__month {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
 }
 
 /* ─── Responsive ─── */
